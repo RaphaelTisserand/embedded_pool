@@ -1,6 +1,6 @@
 #include <avr/io.h>
 
-int main () {
+int main (void) {
 	PORTB = 0;
 	PORTB = 1;
 
