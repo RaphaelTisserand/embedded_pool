@@ -2,7 +2,7 @@
 #include <util/delay.h>
 
 int main(void) {
-	PORTB = 0;
+	DDRB = 1 << DDB0;
 
 	for (;;) { PORTB = !(PIND & (1 << PD2)); }
 }

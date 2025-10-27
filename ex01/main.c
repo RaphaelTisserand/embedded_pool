@@ -1,7 +1,7 @@
 #include <avr/io.h>
 
 int main (void) {
-	PORTB = 0;
+	DDRB = 1 << DDB0;
 	PORTB = 1;
 
 	return 0;
