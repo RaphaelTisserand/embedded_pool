@@ -1,0 +1,19 @@
+#include <avr/io.h>
+
+int	main(void) {
+	DDRB = 1 << PB1; // PB1 initialisation
+
+	for (;;) {
+		// Here we just 
+		for (uint8_t i = 0; i < 255; ++i) {
+			for (uint8_t i = 0; i < 255; ++i) {
+				for (uint8_t i = 0; i < 10; ++i) {
+					/* Takes lots of time to run */
+				}
+			}
+		}
+		PORTB ^= 1 << PB1; // Turns on/off PB1
+	}
+
+	return 0;
+}
