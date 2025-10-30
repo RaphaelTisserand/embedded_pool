@@ -1,14 +1,13 @@
 #include <avr/io.h>
 
 int	main(void) {
-	DDRB = 1 << PB1; // PB1 initialisation
+	DDRB = 1 << PB1; // PB1 initialisation -> output mod
 
 	for (;;) {
-		// Here we just 
 		for (uint8_t i = 0; i < 255; ++i) {
 			for (uint8_t i = 0; i < 255; ++i) {
 				for (uint8_t i = 0; i < 10; ++i) {
-					/* Takes lots of time to run */
+					/* Takes a lot of time to run */
 				}
 			}
 		}
