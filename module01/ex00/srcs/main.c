@@ -1,7 +1,7 @@
 #include <avr/io.h>
 
-int	main(void) {
-	DDRB = 1 << PB1; // PB1 initialisation -> output mod
+int main(void) {
+	DDRB = 1 << PB1; // Set PB1 to output mod - p100
 
 	for (;;) {
 		for (uint8_t i = 0; i < 255; ++i) {
@@ -11,7 +11,8 @@ int	main(void) {
 				}
 			}
 		}
-		PORTB ^= 1 << PB1; // Turns on/off PB1
+
+		PORTB ^= 1 << PB1; // Toggle PB1 - p100
 	}
 
 	return 0;
