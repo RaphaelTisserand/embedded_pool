@@ -1,36 +1,39 @@
-NAME		:= ex00
+NAME			:= ex00
 
-INCS		:= incs
+INCS			:= incs
 
-SRC_DIR		:= srcs
-SRC			:= \
+SRC_DIR			:= srcs
+SRC				:= \
 	main.c \
 	uart/uart_tx.c \
 	uart/USART_init.c
-SRC			:= $(SRC:%=$(SRC_DIR)/%)
+SRC				:= $(SRC:%=$(SRC_DIR)/%)
 
-BUILD_DIR	:= .build
-OBJ			:= $(SRC:$(SRC_DIR)/%=$(BUILD_DIR)/%.o)
-DEPS		:= $(OBJ:.o=.d)
-BIN			:= $(BUILD_DIR)/$(NAME).bin
-HEX			:= $(BUILD_DIR)/$(NAME).hex
+BUILD_DIR		:= .build
+OBJ				:= $(SRC:$(SRC_DIR)/%=$(BUILD_DIR)/%.o)
+DEPS			:= $(OBJ:.o=.d)
+BIN				:= $(BUILD_DIR)/$(NAME).bin
+HEX				:= $(BUILD_DIR)/$(NAME).hex
 
-CC			:= avr-gcc
-CFLAGS		:= -Wall -Wextra -Werror
-CPPFLAGS	:= $(addprefix -I,$(INCS)) -MMD -MP
-CPY			:= avr-objcopy
-DUDE		:= avrdude
+CC				:= avr-gcc
+CFLAGS			:= -Wall -Wextra -Werror
+CPPFLAGS		:= $(addprefix -I,$(INCS)) -MMD -MP
+CPY				:= avr-objcopy
+DUDE			:= avrdude
 
 # RM			+= -r
-MAKEFLAGS	+= --silent --no-print-directory
-DIR_DUP		= mkdir -p $(@D)
+MAKEFLAGS		+= --silent --no-print-directory
+DIR_DUP			= mkdir -p $(@D)
 
-GREEN		:= $(shell tput setaf 2)
-RED			:= $(shell tput setaf 1)
-RESET		:= $(shell tput sgr0)
+GREEN			:= $(shell tput setaf 2)
+RED				:= $(shell tput setaf 1)
+RESET			:= $(shell tput sgr0)
+
+F_CPU			:= 16000000
+UART_BAUDRATE	:= 115200
 
 all: $(HEX)
-	$(DUDE) -U $(HEX) -p ATmega328P -b 115200 -c arduino -P /dev/ttyUSB0
+	$(DUDE) -U $(HEX) -p ATmega328P -b UART_BAUDRATE -c arduino -P /dev/ttyUSB0
 
 $(HEX): $(BIN)
 	$(CPY) $(BIN) $(HEX)
@@ -42,7 +45,7 @@ $(BIN): $(OBJ)
 
 $(BUILD_DIR)/%.c.o: $(SRC_DIR)/%.c
 	$(DIR_DUP)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -DF_CPU=16000000 -mmcu=atmega328p -Os -c -o $@ $<
+	$(CC) $(CFLAGS) $(CPPFLAGS) -mmcu=atmega328p -Os -c -o $@ $<
 	$(info $(GREEN)CREATED$(RESET) $@)
 
 clean:
@@ -52,9 +55,9 @@ re: clean all
 
 stop:
 	echo "int	main(void) {}" > empty.c
-	$(CC) empty.c -o empty.bin -DF_CPU=16000000 -mmcu=atmega328p
+	$(CC) empty.c -o empty.bin -mmcu=atmega328p
 	$(CPY) empty.bin empty.hex
-	$(DUDE) -U empty.hex -p ATmega328P -b 115200 -c arduino -P /dev/ttyUSB0
+	$(DUDE) -U empty.hex -p ATmega328P -b UART_BAUDRATE -c arduino -P /dev/ttyUSB0
 	$(RM) empty.*
 
 info-%:
