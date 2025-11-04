@@ -3,7 +3,10 @@ NAME		:= ex00
 INCS		:= incs
 
 SRC_DIR		:= srcs
-SRC			:= main.c
+SRC			:= \
+	main.c \
+	uart/uart_tx.c \
+	uart/USART_init.c
 SRC			:= $(SRC:%=$(SRC_DIR)/%)
 
 BUILD_DIR	:= .build
