@@ -19,3 +19,4 @@
 
 void uart_init(unsigned int);
 void uart_tx(char);
+void uart_printstr(const char *);

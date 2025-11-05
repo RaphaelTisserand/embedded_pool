@@ -2,11 +2,9 @@
 
 int main(void) {
 	uart_init(MYUBRR);
+	uart_printstr("Hello World!\n");
 
-	for (;;) {
-		uart_tx('Z');
-		_delay_ms(1000);
-	}
+	for (;;) {}
 
 	return 0;
 }
