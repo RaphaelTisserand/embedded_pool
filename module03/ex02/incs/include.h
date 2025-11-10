@@ -16,3 +16,7 @@
 #ifndef MYUBRR
 #define MYUBRR F_CPU / (UART_BAUDRATE * 8) - 1
 #endif
+
+void init_rgb();
+void set_rgb(uint8_t, uint8_t, uint8_t);
+void wheel(uint8_t);

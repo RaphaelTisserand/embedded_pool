@@ -11,6 +11,14 @@ int main(void) {
 		_delay_ms(1000);
 		PORTD = (1 << PB3);
 		_delay_ms(1000);
+		PORTD = (1 << PB5) | (1 << PB6);
+		_delay_ms(1000);
+		PORTD = (1 << PB3) | (1 << PB6);
+		_delay_ms(1000);
+		PORTD = (1 << PB3) | (1 << PB5);
+		_delay_ms(1000);
+		PORTD = (1 << PB3) | (1 << PB5) | (1 << PB6);
+		_delay_ms(1000);
 	}
 
 	return 0;
