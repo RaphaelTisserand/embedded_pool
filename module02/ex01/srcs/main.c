@@ -1,7 +1,7 @@
 #include "include.h"
 #include "macros.h"
 
-FT_ISR(TIMER1_COMPA_vect) { uart_printstr("Hello World!\n\r"); }
+FT_ISR(TIMER1_COMPA_vect_num) { uart_printstr("Hello World!\n\r"); }
 
 int main(void) {
 	uart_init(MYUBRR);

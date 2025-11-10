@@ -1,6 +1,7 @@
 #include "include.h"
+#include "macros.h"
 
-ISR(USART_RX_vect) { uart_tx(swap_case(UDR0)); }
+FT_ISR(USART_RX_vect_num) { uart_tx(swap_case(UDR0)); }
 
 int main(void) {
 	uart_init(MYUBRR);
